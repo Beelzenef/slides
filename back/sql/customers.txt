@@ -1,0 +1,6 @@
+Alumnas cursos programación
+
+Alumnas         |   Experiencia |   Curso
+Elena G.        |   2           |   SQL
+Maria M.        |   1           |   SQL
+Sara M.         |   1           |   SQL
