@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React con TypeScript - Fundamentos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/night.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #61dafb;
+        }
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal .center {
+            text-align: center;
+        }
+        .reveal .small {
+            font-size: 0.8em;
+        }
+        .reveal .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .reveal .error {
+            color: #ff6b6b;
+        }
+        .reveal .success {
+            color: #51cf66;
+        }
+        .reveal .code-title {
+            font-size: 0.7em;
+            color: #61dafb;
+            margin-bottom: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Title -->
+            <section class="center">
+                <h1>React con TypeScript</h1>
+                <h3>Fundamentos para Desarrollo Moderno</h3>
+                <p class="small">Una guía completa para empezar con React + TypeScript</p>
+            </section>
+
+            <!-- Slide 2: Agenda -->
+            <section>
+                <h2>¿Qué veremos?</h2>
+                <ul>
+                    <li class="fragment">Conceptos básicos: Fragments, Props</li>
+                    <li class="fragment">Hooks fundamentales</li>
+                    <li class="fragment">Reglas de los Hooks</li>
+                    <li class="fragment">Custom Hooks</li>
+                    <li class="fragment">Error Boundaries</li>
+                    <li class="fragment">Mejores prácticas con TypeScript</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: Fragments -->
+            <section>
+                <h2>Fragments</h2>
+                <p class="highlight">Agrupa elementos sin nodos extra en el DOM</p>
+                <div class="code-title">Evita divs innecesarios:</div>
+                <pre><code class="tsx" data-trim>
+function Example(): JSX.Element {
+    return (
+        &lt;&gt;
+            &lt;h1&gt;Título&lt;/h1&gt;
+            &lt;p&gt;Contenido&lt;/p&gt;
+        &lt;/&gt;
+    );
+}
+                </code></pre>
+                <p class="small">✅ DOM limpio, CSS sin interferencias</p>
+            </section>
+
+            <!-- Slide 4: Props -->
+            <section>
+                <h2>Props con TypeScript</h2>
+                <p class="highlight">Datos inmutables entre componentes</p>
+                <div class="code-title">Tipado seguro:</div>
+                <pre><code class="tsx" data-trim>
+interface GreetingProps {
+    name: string;
+    age?: number; // Opcional con default
+}
+
+function Greeting({ name, age = 18 }: GreetingProps) {
+    return (
+        &lt;div&gt;
+            &lt;p&gt;Hola, {name}!&lt;/p&gt;
+            &lt;p&gt;Tienes {age} años&lt;/p&gt;
+        &lt;/div&gt;
+    );
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 5: PropTypes vs TypeScript -->
+            <section>
+                <h2>PropTypes vs TypeScript</h2>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="width: 45%;">
+                        <h3 class="error">❌ PropTypes (Obsoleto)</h3>
+                        <ul class="small">
+                            <li>Runtime validation</li>
+                            <li>Paquete separado</li>
+                            <li>No autocompletado</li>
+                        </ul>
+                    </div>
+                    <div style="width: 45%;">
+                        <h3 class="success">✅ TypeScript (Moderno)</h3>
+                        <ul class="small">
+                            <li>Compile-time validation</li>
+                            <li>Integrado</li>
+                            <li>Autocompletado + IntelliSense</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: Reglas de Hooks -->
+            <section>
+                <h2>Reglas de los Hooks</h2>
+                <div class="highlight">¡SIEMPRE seguir estas reglas!</div>
+                <ol>
+                    <li class="fragment"><strong>Solo en el nivel superior</strong><br>
+                        <span class="small">Nunca en loops, condiciones o funciones anidadas</span>
+                    </li>
+                    <li class="fragment"><strong>Solo en componentes React</strong><br>
+                        <span class="small">O en otros custom hooks</span>
+                    </li>
+                    <li class="fragment"><strong>Prefijo "use"</strong><br>
+                        <span class="small">Para custom hooks</span>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Slide 7: useState -->
+            <section>
+                <h2>useState</h2>
+                <p class="highlight">Estado local en componentes funcionales</p>
+                <div class="code-title">Tipado explícito:</div>
+                <pre><code class="tsx" data-trim>
+function Contador(): JSX.Element {
+    const [contador, setContador] = useState&lt;number&gt;(0);
+
+    return (
+        &lt;div&gt;
+            &lt;p&gt;Contador: {contador}&lt;/p&gt;
+            &lt;button onClick={() =&gt; setContador(contador + 1)}&gt;
+                Incrementar
+            &lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 8: useEffect - Conceptos -->
+            <section>
+                <h2>useEffect - Control de ejecución</h2>
+                <div class="highlight">Array de dependencias es clave</div>
+                <ul>
+                    <li class="fragment"><strong>Sin array:</strong> Cada render</li>
+                    <li class="fragment"><strong>Array vacío []:</strong> Solo al montar</li>
+                    <li class="fragment"><strong>Con deps [dep1, dep2]:</strong> Cuando cambian</li>
+                </ul>
+                <p class="fragment small">⚠️ <strong>Cleanup function:</strong> Evita memory leaks</p>
+            </section>
+
+            <!-- Slide 9: useEffect - Cleanup -->
+            <section>
+                <h2>useEffect - Cleanup</h2>
+                <div class="code-title">Patrón con limpieza:</div>
+                <pre><code class="tsx" data-trim>
+function Temporizador(): JSX.Element {
+    const [segundos, setSegundos] = useState&lt;number&gt;(0);
+
+    useEffect(() =&gt; {
+        const interval = setInterval(() =&gt; {
+            setSegundos(prev =&gt; prev + 1);
+        }, 1000);
+
+        // 🧹 Cleanup function
+        return () =&gt; clearInterval(interval);
+    }, []); // Solo al montar
+
+    return &lt;div&gt;Segundos: {segundos}&lt;/div&gt;;
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 10: useRef -->
+            <section>
+                <h2>useRef</h2>
+                <p class="highlight">Referencias sin re-renderizado</p>
+                <div class="code-title">Acceso directo al DOM:</div>
+                <pre><code class="tsx" data-trim>
+function InputFoco(): JSX.Element {
+    const inputRef = useRef&lt;HTMLInputElement&gt;(null);
+
+    const manejarClick = (): void =&gt; {
+        inputRef.current?.focus(); // Optional chaining
+    };
+
+    return (
+        &lt;div&gt;
+            &lt;input ref={inputRef} type="text" /&gt;
+            &lt;button onClick={manejarClick}&gt;Focalizar&lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 11: useCallback -->
+            <section>
+                <h2>useCallback</h2>
+                <p class="highlight">Memoriza funciones para optimización</p>
+                <div class="small">
+                    <p><strong>Úsalo cuando:</strong></p>
+                    <ul>
+                        <li>Pasas funciones a componentes con &lt;code&gt;memo&lt;/code&gt;</li>
+                        <li>En dependencias de otros hooks</li>
+                        <li>Funciones costosas de crear</li>
+                    </ul>
+                    <p class="error"><strong>NO lo uses:</strong> para funciones simples</p>
+                </div>
+            </section>
+
+            <!-- Slide 12: useReducer vs useState -->
+            <section>
+                <h2>useReducer vs useState</h2>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="width: 45%;">
+                        <h3 class="success">useReducer</h3>
+                        <ul class="small">
+                            <li>Estado complejo</li>
+                            <li>Múltiples sub-valores</li>
+                            <li>Lógica estructurada</li>
+                            <li>Acciones específicas</li>
+                        </ul>
+                    </div>
+                    <div style="width: 45%;">
+                        <h3 class="success">useState</h3>
+                        <ul class="small">
+                            <li>Estado simple</li>
+                            <li>Primitivos/arrays</li>
+                            <li>Actualizaciones directas</li>
+                            <li>Sin lógica compleja</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 13: useReducer Example -->
+            <section>
+                <h2>useReducer - Patrón</h2>
+                <div class="code-title">Tipado fuerte con Union Types:</div>
+                <pre><code class="tsx" data-trim>
+interface State {
+    contador: number;
+}
+
+type Action = 
+    | { type: "incrementar" }
+    | { type: "decrementar" }
+    | { type: "reset" };
+
+function reducer(state: State, action: Action): State {
+    switch (action.type) {
+        case "incrementar":
+            return { contador: state.contador + 1 };
+        // ... más casos
+    }
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 14: Custom Hooks -->
+            <section>
+                <h2>Custom Hooks</h2>
+                <p class="highlight">Reutiliza lógica entre componentes</p>
+                <div class="small">
+                    <p><strong>Reglas:</strong></p>
+                    <ul>
+                        <li>Prefijo "use"</li>
+                        <li>Pueden usar otros hooks</li>
+                        <li>Extraen lógica común</li>
+                    </ul>
+                </div>
+                <p class="fragment"><strong>Ejemplos:</strong> useFetch, useLocalStorage, useAuth</p>
+            </section>
+
+            <!-- Slide 15: Custom Hook Example -->
+            <section>
+                <h2>Custom Hook - useFetch</h2>
+                <div class="code-title">Hook genérico con TypeScript:</div>
+                <pre><code class="tsx" data-trim>
+interface UseFetchResult&lt;T&gt; {
+    data: T | null;
+    loading: boolean;
+    error: string | null;
+}
+
+function useFetch&lt;T&gt;(url: string): UseFetchResult&lt;T&gt; {
+    const [data, setData] = useState&lt;T | null&gt;(null);
+    const [loading, setLoading] = useState&lt;boolean&gt;(true);
+    const [error, setError] = useState&lt;string | null&gt;(null);
+
+    // useEffect implementation...
+    return { data, loading, error };
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 16: Error Boundaries -->
+            <section>
+                <h2>Error Boundaries</h2>
+                <p class="highlight">Captura errores en el árbol de componentes</p>
+                <div class="small">
+                    <p><strong>Capturan:</strong></p>
+                    <ul>
+                        <li>Errores en render</li>
+                        <li>Errores en lifecycle methods</li>
+                        <li>Errores en constructores</li>
+                    </ul>
+                    <p class="error"><strong>NO capturan:</strong></p>
+                    <ul>
+                        <li>Event handlers</li>
+                        <li>Código asíncrono</li>
+                        <li>Server-side rendering</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 17: Error Boundary Modern -->
+            <section>
+                <h2>Error Boundaries Modernas</h2>
+                <div class="code-title">react-error-boundary (recomendado):</div>
+                <pre><code class="tsx" data-trim>
+import { ErrorBoundary } from 'react-error-boundary';
+
+function ErrorFallback({ error, resetErrorBoundary }) {
+    return (
+        &lt;div role="alert"&gt;
+            &lt;h2&gt;¡Algo salió mal!&lt;/h2&gt;
+            &lt;pre&gt;{error.message}&lt;/pre&gt;
+            &lt;button onClick={resetErrorBoundary}&gt;
+                Intentar de nuevo
+            &lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+                </code></pre>
+            </section>
+
+            <!-- Slide 18: TypeScript Benefits -->
+            <section>
+                <h2>Beneficios de TypeScript</h2>
+                <ul>
+                    <li class="fragment"><strong>🔍 Detección temprana de errores</strong><br>
+                        <span class="small">En tiempo de compilación, no runtime</span>
+                    </li>
+                    <li class="fragment"><strong>🚀 Mejor experiencia de desarrollo</strong><br>
+                        <span class="small">Autocompletado, refactoring seguro</span>
+                    </li>
+                    <li class="fragment"><strong>📚 Documentación viviente</strong><br>
+                        <span class="small">Los tipos documentan el código</span>
+                    </li>
+                    <li class="fragment"><strong>🔧 Mantenimiento más fácil</strong><br>
+                        <span class="small">Cambios seguros en grandes proyectos</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Slide 19: Best Practices -->
+            <section>
+                <h2>Mejores Prácticas</h2>
+                <div class="small">
+                    <ul>
+                        <li class="fragment"><strong>Tipado explícito:</strong> Define interfaces para props</li>
+                        <li class="fragment"><strong>Cleanup functions:</strong> Siempre en useEffect</li>
+                        <li class="fragment"><strong>Custom hooks:</strong> Para lógica reutilizable</li>
+                        <li class="fragment"><strong>Error boundaries:</strong> En niveles estratégicos</li>
+                        <li class="fragment"><strong>Memorización:</strong> Solo cuando sea necesario</li>
+                        <li class="fragment"><strong>Convenciones:</strong> Nombres descriptivos</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 20: Common Pitfalls -->
+            <section>
+                <h2>Errores Comunes</h2>
+                <ul class="small">
+                    <li class="fragment error"><strong>❌ Hooks en condiciones</strong><br>
+                        Rompe el orden de ejecución
+                    </li>
+                    <li class="fragment error"><strong>❌ Olvidar cleanup</strong><br>
+                        Memory leaks en timers/suscripciones
+                    </li>
+                    <li class="fragment error"><strong>❌ useCallback innecesario</strong><br>
+                        Overhead sin beneficio
+                    </li>
+                    <li class="fragment error"><strong>❌ Estado derivado</strong><br>
+                        Usar useMemo en lugar de useState
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Slide 21: Next Steps -->
+            <section>
+                <h2>Próximos Pasos</h2>
+                <ul>
+                    <li class="fragment">🔄 <strong>Context API</strong> - Estado global</li>
+                    <li class="fragment">⚡ <strong>React Query</strong> - Server state</li>
+                    <li class="fragment">🎨 <strong>Styled Components</strong> - CSS-in-JS</li>
+                    <li class="fragment">🧪 <strong>Testing Library</strong> - Pruebas</li>
+                    <li class="fragment">🔧 <strong>Next.js</strong> - Framework completo</li>
+                    <li class="fragment">📱 <strong>React Native</strong> - Móviles</li>
+                </ul>
+            </section>
+
+            <!-- Slide 22: Resources -->
+            <section>
+                <h2>Recursos Útiles</h2>
+                <ul class="small">
+                    <li><strong>Documentación oficial:</strong> react.dev</li>
+                    <li><strong>TypeScript:</strong> typescriptlang.org</li>
+                    <li><strong>React DevTools:</strong> Extensión del navegador</li>
+                    <li><strong>Vite:</strong> Herramienta de build rápida</li>
+                    <li><strong>ESLint + Prettier:</strong> Code quality</li>
+                </ul>
+            </section>
+
+            <!-- Slide 23: Thank You -->
+            <section class="center">
+                <h1>¡Gracias!</h1>
+                <h3>¿Preguntas?</h3>
+                <p class="small">React + TypeScript = 💪</p>
+                <p class="small">Happy coding! 🚀</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [RevealHighlight, RevealNotes],
+            highlight: {
+                highlightOnLoad: true,
+                escapeHTML: false
+            }
+        });
+    </script>
+</body>
+</html>
