@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon"
+		href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>💙</text></svg>">
+    <title>Aprende a volar con Flutter</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/monokai.min.css">
+
+    <style>
+        :root {
+            --r-main-font-size: 32px; 
+        }
+
+        .reveal .slides {
+            text-align: left; 
+        }
+
+        .reveal .slides section {
+            height: 100%;
+            width: 100%;
+            padding: 40px; 
+            box-sizing: border-box;
+        }
+
+        .layout-split {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            height: 100%;
+        }
+
+        .layout-centered {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        .deco-br {
+            position: absolute !important;
+            bottom: 20px;
+            right: 20px;
+            width: 120px !important;
+        }
+
+        .deco-bc {
+            position: absolute !important;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px !important;
+        }
+
+        .layout-tr-img {
+            display: flex !important;
+            flex-direction: column;
+            height: 100%;
+        }
+        .tr-header {
+            text-align: right;
+            width: 100%;
+        }
+        .img-grow {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reveal pre {
+            width: 100% !important;
+            margin: 0 !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 0.55em;
+        }
+
+        .reveal img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .reveal h2, .reveal h3 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <div class="layout-split">
+                    <img src="https://global-uploads.webflow.com/6047a9e35e5dc54ac86ddd90/63018720eab24847b1f88ee2_cc137f7e.png" alt="Grafico">
+                    <div>
+                        <h2>aprende a volar con Flutter</h2>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="layout-split">
+                    <div>
+                        <h2>whoami</h2>
+                        <p>Asher Guzmán Blanco</p>
+                        <p>developer, writer, ???</p>
+                        <p>coding at devoteam</p>
+                    </div>
+                    <img src="https://avatars.githubusercontent.com/u/6389665?v=4" alt="Grafico">
+                </div>
+            </section>
+            
+            <section>
+                <section>
+                    <h2>¿Qué es Flutter?</h2>
+                    <p>Creado por Google, lanzado en 2017</p>
+                    <p>Framework open-source para el desarrollo de aplicaciones cross-platform: iOS, Android, Windows, macOS, web, Linux, wearable tech (smartwatches i.e.)</p>
+                    <p>Dart como lenguaje para definición de UIs + lógica de app</p>
+                    <p>Dibujado de UI pixel a pixel sobre lienzo nativo</p>
+                    <p>Versión 3.29 lanzada en febrero 2025</p>
+                    <img src="https://avatars.githubusercontent.com/u/155602585?v=4?s=400" class="deco-br" alt="logo">
+                </section>
+
+                <section>
+                    <h3>¿Por qué me quedé?</h3>
+                    <h4>A veces pruebas, te gusta pero pasas a otra cosa, no fue así con Flutter</h4>
+                    <p>Mucho contenido en múltiples formatos</p>
+                    <p>Una comunidad viva</p>
+                    <p>Grupos de conversación en varios idiomas, activos y con flujo de contenido</p>
+
+                </section>
+
+                <section>
+                    <h2>Si vas a empezar...</h2>
+                    <h4>... irás explorando los siguientes temas</h4>
+                    <ul>
+                        <li>Dart (a language you already know)</li>
+                        <li>Plataformas objetivo</li>
+                        <li>Widgets para definir UIs</li>
+                        <li>Hot reload + hot restart</li>
+                        <li>Stateless vs Stateful</li>
+                        <li>Librerías útiles</li>
+                        <li>Integración con APIs y clouds</li>
+                        <li>State management (en profundidad)</li> 
+                    </ul>
+                    <img src="https://avatars.githubusercontent.com/u/155602585?v=4?s=400" class="deco-br" alt="logo">
+                </section>
+
+                <section>
+                    <div class="layout-tr-img">
+                        <div class="tr-header">
+                            <small>dartpad.dev</small>
+                        </div>
+                        <div class="img-grow">
+                            <img src="https://tse1.mm.bing.net/th/id/OIP.u0y0Ia9-Z4ysMywzH_TVzwHaEi?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Centered Image">
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="layout-tr-img">
+                        <div class="tr-header">
+                            <small>flutter.dev/showcase</small>
+                        </div>
+                        <div class="img-grow">
+                            <img src="https://neevash.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fneevashdev%2FZlFZsSol0Zci9cNy_CleanShot2024-05-19at19.26.35%25402x.png%3Fauto%3Dformat%2Ccompress&w=3840&q=75" alt="Centered Image">
+                        </div>
+                    </div>
+                </section>
+                
+            </section>
+
+            <section>
+                 <section>
+                    <div class="layout-centered">
+                        <h4>Hablemos de state management</h4>
+                    </div>
+                </section>
+                <section>
+                    <div class="layout-centered">
+                        <p>Los widgets son inmutables</p>
+                        <p>Solo podemos operar con el state y ante cambios en el state, el widget se redibuja</p>
+                        <p>El state fluye y cambia con el uso</p>
+                    </div>
+                </section>
+                 <section>
+                    <div class="layout-centered">
+                        <h2>Stateless</h2>
+                        <p>Widgets que no van a cambiar con la interacción de users</p>
+                    </div>
+                    <img src="https://via.placeholder.com/80" class="deco-bc" alt="icono">
+                </section>
+                <section>
+                    <div class="layout-centered">
+                        <h2>Stateful</h2>
+                        <p>Widgets que “cambiarán” (se redibujarán) con la interacción de users</p>
+                    </div>
+                    <img src="https://via.placeholder.com/80" class="deco-bc" alt="icono">
+                </section>
+            </section>
+
+            <!-- ACCESIBILITY -->
+            <section>
+                <section>
+                     <div class="layout-centered">
+                        <h3>¿Qué es la accesibilidad?</h3>
+                    </div>
+                </section>
+            </section>
+
+            <!--  -->
+            <section>
+                <section>
+                     <div class="layout-centered">
+                        <h3></h3>
+                    </div>
+                </section>
+            </section>
+
+            <!--  -->
+            <section>
+                <section>
+                     <div class="layout-centered">
+                        <h3></h3>
+                    </div>
+                </section>
+            </section>
+
+            <!--  -->
+            <section>
+                <section>
+                     <div class="layout-centered">
+                        <h3></h3>
+                    </div>
+                </section>
+            </section>
+
+            <!-- EAA -->
+            <section>
+                <section>
+                     <div class="layout-centered">
+                        <h3>Accesibilidad a la europea</h3>
+                        <p>European Accessibility Act (EAA)</p>
+                    </div>
+                </section>
+            </section>
+
+            <!-- FLAME -->
+            <section>
+                <section>
+                     <div class="layout-centered">
+                        <h3>Un nuevo game engine en el ecosistema</h3>
+                    </div>
+                </section>
+            </section>
+
+            <!-- FLUTTER MÁLAGA -->
+            <section>
+                <section>
+                     <div class="layout-centered">
+                        <h3>FLUTTER MÁLAGA</h3>
+                    </div>
+                </section>
+            </section>
+
+            <!-- FAQ -->
+            <section>
+                <section>
+                     <div class="layout-centered">
+                        <h3>PREGUNTAS FRECUENTES</h3>
+                    </div>
+                </section>
+            </section>
+
+            <!-- OUTRO -->
+            <section>
+                <section>
+                     <div class="layout-centered">
+                        <h3>¿Merece la pena aprender Flutter?</h3>
+                    </div>
+                </section>
+            </section>
+
+
+            <!-- EJEMPLOS -->
+
+            <!--
+            <section>
+                <div class="layout-split">
+                    <div>
+                        <h2>Conceptos A</h2>
+                        <ul>
+                            <li>Punto clave número uno</li>
+                            <li>Análisis de datos primarios</li>
+                            <li>Conclusiones del sector</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Conceptos B</h2>
+                        <p>Aquí puedes incluir una comparativa directa o una columna de texto secundario que rellene el espacio derecho.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="layout-split">
+                    <div>
+                        <h2>Lógica de Control</h2>
+                        <p>El código a la derecha implementa el algoritmo de validación de usuarios utilizando promesas.</p>
+                    </div>
+                    <pre><code class="javascript" data-trim>
+                        async function validateUser(id) {
+                        const user = await db.users.find(id);
+                        if (!user) throw new Error("404");
+                        return user.isActive;
+                        }
+                    </code></pre>
+                </div>
+            </section>
+
+            <section>
+                <div class="layout-split">
+                    <div>
+                        <h2>Visualización Gráfica</h2>
+                        <p>Como se observa en el diagrama, el flujo de trabajo se optimiza al reducir los pasos intermedios en un 40%.</p>
+                    </div>
+                    <img src="https://via.placeholder.com/600x400" alt="Grafico">
+                </div>
+            </section>
+
+            <section>
+                <div class="layout-centered">
+                    <h3>Configuración de Servidor</h3>
+                    <pre style="width: 70% !important;"><code class="yaml" data-trim>
+                        server:
+                        port: 8080
+                        host: localhost
+                        timeout: 30s
+                        retries: 3
+                    </code></pre>
+                </div>
+            </section>
+
+            <section>
+                <div class="layout-centered">
+                    <img src="https://via.placeholder.com/1000x600" alt="Imagen Grande">
+                </div>
+            </section>
+
+            <section>
+                <h2>Título con Branding</h2>
+                <p>Este layout es ideal para diapositivas de contenido extenso donde quieres mantener la identidad visual de la marca siempre presente en la esquina inferior.</p>
+                <p>El contenido fluye sin verse afectado por la posición del logo.</p>
+                <img src="https://via.placeholder.com/150x150" class="deco-br" alt="logo">
+            </section>
+
+            <section>
+                <div class="layout-centered">
+                    <h2>Frase de Cierre</h2>
+                    <p>"El diseño no es solo lo que se ve, es cómo funciona."</p>
+                </div>
+                <img src="https://via.placeholder.com/80" class="deco-bc" alt="icono">
+            </section>
+
+            <section>
+                <div class="layout-tr-img">
+                    <div class="tr-header">
+                        <small>Documento Técnico v2.4</small>
+                        <p><strong>Esquema de Infraestructura</strong></p>
+                    </div>
+                    <div class="img-grow">
+                        <img src="https://via.placeholder.com/800x400" alt="Centered Image">
+                    </div>
+                </div>
+            </section>
+            -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            width: "100%",
+            height: "100%",
+            margin: 0.05,
+            minScale: 1,
+            maxScale: 1,
+
+            hash: true,
+            center: true, 
+            transition: 'fade', 
+            
+            plugins: [ RevealHighlight ]
+        });
+    </script>
+</body>
+</html>
