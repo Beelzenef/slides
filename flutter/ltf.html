@@ -14,7 +14,40 @@
 
     <style>
         :root {
-            --r-main-font-size: 32px; 
+            --r-main-font-size: 32px;
+            --bg-color: #f5f7fb;
+            --text-color: #0f172a;
+            --surface-color: #ffffff;
+            --border-color: #dbe4f0;
+            --toggle-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+        }
+
+        body.theme-dark {
+            --bg-color: #0b1220;
+            --text-color: #e5e7eb;
+            --surface-color: #111a2b;
+            --border-color: #1f2b44;
+            --toggle-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 220ms ease, color 220ms ease;
+        }
+
+        .reveal {
+            color: var(--text-color);
+            transition: color 220ms ease;
+        }
+
+        .reveal-viewport {
+            background: var(--bg-color);
+            transition: background-color 220ms ease;
+        }
+
+        .reveal, .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .reveal p, .reveal li, .reveal small {
+            color: var(--text-color);
         }
 
         .reveal .slides {
@@ -92,9 +125,49 @@
         .reveal h2, .reveal h3 {
             margin-bottom: 20px;
         }
+
+        .theme-toggle {
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 50;
+            border: 1px solid var(--border-color);
+            background: var(--surface-color);
+            color: var(--text-color);
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+            box-shadow: var(--toggle-shadow);
+            transition: transform 120ms ease, background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-1px);
+        }
+
+        .theme-toggle:focus-visible {
+            outline: 3px solid rgba(56, 189, 248, 0.65);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 700px) {
+            .theme-toggle {
+                top: 8px;
+                right: 8px;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema" aria-pressed="false">
+        🌙
+    </button>
 
     <div class="reveal">
         <div class="slides">
@@ -417,6 +490,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
     <script>
+        const THEME_KEY = 'ltf-theme';
+        const toggleButton = document.getElementById('theme-toggle');
+
+        function applyTheme(theme) {
+            const isDark = theme === 'dark';
+            document.body.classList.toggle('theme-dark', isDark);
+            document.body.classList.toggle('theme-light', !isDark);
+            toggleButton.textContent = isDark ? '☀️' : '🌙';
+            toggleButton.setAttribute('aria-pressed', String(isDark));
+        }
+
+        const savedTheme = localStorage.getItem(THEME_KEY);
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+        toggleButton.addEventListener('click', () => {
+            const nextTheme = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+            applyTheme(nextTheme);
+            localStorage.setItem(THEME_KEY, nextTheme);
+        });
+
         Reveal.initialize({
             width: "100%",
             height: "100%",
