@@ -192,8 +192,14 @@
                     <img src="https://avatars.githubusercontent.com/u/6389665?v=4" alt="Grafico">
                 </div>
             </section>
+
+            <section id="thanks">
+                <div class="layout-centered">
+                    <h2>Gracias por hacer posible este evento</h2>
+                </div>
+            </section>
             
-            <section>
+            <section id="whatis">
                 <section>
                     <h2>¿Qué es Flutter?</h2>
                     <p>Creado por Google, lanzado en 2017</p>
@@ -253,7 +259,7 @@
                 
             </section>
 
-            <section>
+            <section id="statemgmt">
                  <section>
                     <div class="layout-centered">
                         <h2>Hablemos de <i>state management</i></h2>
@@ -291,21 +297,21 @@
                 </section>
 
                 <section>
-                <div class="layout-tr-img">
-                    <div class="tr-header">
-                        <p><strong>Gestiona el state</strong></p>
-                        <small>Hay muchas alternativas</small>
+                    <div class="layout-tr-img">
+                        <div class="tr-header">
+                            <p><strong>Gestiona el state</strong></p>
+                            <small>Hay muchas alternativas</small>
+                        </div>
+                        <div class="img-grow">
+                            <img src="img/statemngalt.png" alt="Centered Image">
+                        </div>
                     </div>
-                    <div class="img-grow">
-                        <img src="img/statemngalt.png" alt="Centered Image">
-                    </div>
-                </div>
-            </section>
+                </section>
 
             </section>
 
             <!-- ACCESIBILITY -->
-            <section>
+            <section id="a11y">
                 <section>
                      <div class="layout-centered">
                         <h3>¿Qué es la accesibilidad?</h3>
@@ -314,7 +320,7 @@
             </section>
 
             <!-- FEATURES -->
-            <section>
+            <section id="features">
                 <section>
                      <div class="layout-centered">
                         <h3></h3>
@@ -323,16 +329,214 @@
             </section>
 
             <!-- BACKEND -->
-            <section>
+            <section id="backend">
                 <section>
                      <div class="layout-centered">
-                        <h3></h3>
+                        <h3>Momento de backend</h3>
+                        <p>Las opciones más populares</p>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="layout-centered">
+                        <h3>Dart Frog</h3>
+                        <p>Framework backend en Dart, inspirado en ergonomia moderna</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Dart Frog: routing y middleware</h3>
+                    <ul>
+                        <li>Routing file-based facil de navegar</li>
+                        <li>Middleware por ruta para auth, logs y validaciones</li>
+                        <li>Handlers tipados para respuestas HTTP claras</li>
+                        <li>Ideal para APIs pequeñas y medianas con equipos Dart</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="layout-split">
+                        <div>
+                            <h3>Dart Frog: developer experience</h3>
+                            <ul>
+                                <li>Hot reload en desarrollo backend</li>
+                                <li>Estructura simple para empezar rapido</li>
+                                <li>CLI para generar boilerplate</li>
+                                <li>Buen encaje en equipos que ya usan Flutter</li>
+                            </ul>
+                        </div>
+                        <pre><code class="dart" data-trim>
+                            Response onRequest(RequestContext context) {
+                            return Response.json(body: {
+                                'service': 'api',
+                                'status': 'ok'
+                                });
+                            }
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="layout-centered">
+                        <h3>Serverpod</h3>
+                        <p>Backend en Dart orientado a productividad full-stack</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Serverpod: arquitectura y tipado</h3>
+                    <ul>
+                        <li>Generacion de codigo para cliente y servidor</li>
+                        <li>Endpoints tipados y contratos consistentes</li>
+                        <li>ORM integrado para acceso a datos</li>
+                        <li>Migraciones de base de datos incluidas</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="layout-split">
+                        <div>
+                            <h3>Serverpod: operativa</h3>
+                            <ul>
+                                <li>Panel de insights para logs y consultas</li>
+                                <li>Sistema de sesiones y autenticacion utilizable</li>
+                                <li>Background jobs para tareas asincronas</li>
+                                <li>Buena opcion cuando quieres stack Dart completo</li>
+                            </ul>
+                        </div>
+                        <pre><code class="dart" data-trim>
+                            class PingEndpoint extends Endpoint {
+                            Future&lt;String&gt; ping(Session session) async {
+                                return 'pong';
+                              }
+                            }
+                        </code></pre>
+                    </div>
+                </section>
+
+            </section>
+
+            <section id="cloud">
+                <section>
+                     <div class="layout-centered">
+                        <h3>¿Y si no quiero gestionar mi propio backend?</h3>
+                        <p>Backend as a Service (BaaS) para acelerar el desarrollo</p>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="layout-centered">
+                        <h3>Firebase</h3>
+                        <p>BaaS con gran ecosistema para iterar muy rapido</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Firebase: features core</h3>
+                    <ul>
+                        <li>Authentication con varios proveedores</li>
+                        <li>Cloud Firestore para datos en tiempo real</li>
+                        <li>Cloud Functions para logica backend sin servidor dedicado</li>
+                        <li>Cloud Storage para archivos y media</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Firebase: producto y observabilidad</h3>
+                    <ul>
+                        <li>Crashlytics para diagnosticar fallos en produccion</li>
+                        <li>Analytics para eventos y funnels</li>
+                        <li>Remote Config para feature flags y experimentacion</li>
+                        <li>FCM para push notifications multi plataforma</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="layout-centered">
+                        <h3>Supabase</h3>
+                        <p>BaaS sobre Postgres con enfoque SQL-first</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Supabase: base de datos y auth</h3>
+                    <ul>
+                        <li>PostgreSQL gestionado con extensiones modernas</li>
+                        <li>Auth integrado con JWT y social login</li>
+                        <li>RLS para control granular de acceso por fila</li>
+                        <li>SQL como base para modelos y consultas complejas</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <div class="layout-split">
+                        <div>
+                            <h3>Supabase: realtime y edge</h3>
+                            <ul>
+                                <li>Realtime subscriptions sobre cambios en Postgres</li>
+                                <li>Storage para contenido y ficheros de app</li>
+                                <li>Edge Functions para logica cerca del usuario</li>
+                                <li>Panel SQL y APIs auto generadas para acelerar entrega</li>
+                            </ul>
+                        </div>
+                        <pre><code class="sql" data-trim>
+                            create policy "users-can-read-own-profile"
+                            on profiles
+                            for select
+                            using (auth.uid() = id);
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="layout-split">
+                        <div>
+                            <h3>Firebase</h3>
+                            <ul>
+                                <li>Suite muy amplia para producto y crecimiento</li>
+                                <li>Firestore y FCM listos para mobile apps</li>
+                                <li>Crashlytics y Analytics integrados</li>
+                                <li>Buena opcion cuando prima velocidad de entrega</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Supabase</h3>
+                            <ul>
+                                <li>Base Postgres como fuente principal de verdad</li>
+                                <li>RLS potente para reglas de acceso en SQL</li>
+                                <li>Edge Functions y Realtime sobre DB relacional</li>
+                                <li>Buena opcion cuando el modelo SQL es central</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="layout-split">
+                        <div>
+                            <h3>Serverpod</h3>
+                            <ul>
+                                <li>Framework backend full-stack con stack Dart</li>
+                                <li>Generacion de codigo y contratos tipados</li>
+                                <li>ORM, migraciones y enfoque de proyecto completo</li>
+                                <li>Encaja en equipos que quieren backend Dart robusto</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Dart Frog</h3>
+                            <ul>
+                                <li>Framework minimalista para APIs en Dart</li>
+                                <li>Routing por archivos y middleware simple</li>
+                                <li>Menor friccion para servicios pequeños/medianos</li>
+                                <li>Encaja en equipos que buscan simplicidad y rapidez</li>
+                            </ul>
+                        </div>
                     </div>
                 </section>
             </section>
 
             <!-- TESTING -->
-            <section>
+            <section id="testing">
                 <section>
                      <div class="layout-centered">
                         <h3></h3>
@@ -341,17 +545,21 @@
             </section>
 
             <!-- EAA -->
-            <section>
+            <section id="eaa">
                 <section>
                      <div class="layout-centered">
                         <h3>Accesibilidad a la europea</h3>
                         <p>European Accessibility Act (EAA)</p>
                     </div>
                 </section>
+
+                <section>
+                    
+                </section>
             </section>
 
             <!-- FLAME -->
-            <section>
+            <section id="flame">
                 <section>
                      <div class="layout-centered">
                         <h3>Un nuevo game engine en el ecosistema</h3>
@@ -360,7 +568,7 @@
             </section>
 
             <!-- FLUTTER MÁLAGA -->
-            <section>
+            <section id="fluttermalaga">
                 <section>
                         <h3>Somos FlutterMálaga</h3>
                         <p>​​📚 Comunidad de personas voluntarias dedicadas a divulgar sobre Flutter y Dart en nuestra ciudad</p>
@@ -374,20 +582,42 @@
             </section>
 
             <!-- FAQ -->
-            <section>
+            <section id="faq">
                 <section>
-                     <div class="layout-centered">
-                        <h3>PREGUNTAS FRECUENTES</h3>
-                    </div>
+                    <h3>¿Se muere Flutter?</h3>
+                    <p>(abril 2024)</p>
+                    <ul>
+                        <li>Redistribución de parte del equipo de DevOps a Alemania</li>
+                        <li>Varios equipos sufrieron cambios con estos layoffs</li>
+                        <li>Nadie puede ver el futuro</li>
+                        <li>Es un producto maduro y con mucho público</li>
+                        <li>Google hace dogfooding</li>
+                        <li>Muchas empresas están apostando por Flutter</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>¿Y qué pasa con Kotlin Multiplatform?</h3>
+                    <p>Respuesta oficial de Google:</p>
+                    <blockquote>
+                        <p>Las dos tecnologías van a coexistir, cada cual con un propósito.</p>
+                    </blockquote>
+                    <p>¿Compartir lógica de negocio entre apps web y mobile? Kotlin Multiplatform ✅</p>
+                    <p>¿Compartir lógica de negocio y definición de UI entre plataformas? Flutter ✅</p>
+                    <p>
+                        <strong>
+                            <a href="https://developers.googleblog.com/en/making-development-across-platforms-easier-for-developers/">
+                        Making development across platforms for developers
+                            </strong>
+                        (Google Developers Blog)</a>
+                    </p>
                 </section>
             </section>
 
             <!-- OUTRO -->
-            <section>
+            <section id="outro">
                 <section>
-                     <div class="layout-centered">
                         <h3>¿Merece la pena aprender Flutter?</h3>
-                    </div>
                 </section>
             </section>
 
@@ -395,6 +625,7 @@
             <!-- EJEMPLOS -->
 
             
+            <!-- 
             <section>
                 <div class="layout-split">
                     <div>
@@ -484,6 +715,7 @@
                 </div>
             </section>
            
+            -->
         </div>
     </div>
 
